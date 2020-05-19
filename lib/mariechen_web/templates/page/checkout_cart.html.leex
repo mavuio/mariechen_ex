@@ -1,0 +1,128 @@
+<div class="checkout-wrap">
+
+    <h2>
+        Cart
+    </h2>
+
+
+    <%= if  @cart.total_items==0 do %>
+
+    <%= trans(@lang, "the Cart is empty", "der Warenkorb ist leer") %>
+    <% else %>
+
+
+    <table class="cart-items" phx-hook="Cart">
+
+        <%= for item <- @cart.items do %>
+
+
+        <%= case item.type do %>
+        <%  "promocode" ->  %>
+        <tr class="cart-item">
+            <td><span class="promocode"><%= item.promocode %></span></td>
+            <td><%= item.title %></td>
+            <td class="amount"></td>
+            <td class="price">
+                <%= item.total_price |> format_price(2) %>
+            </td>
+            <td>
+                <button class="btn btn-link" phx-click="remove_promocode" phx-value-promocode="<%= item.promocode %>"><i
+                        class='fal fa-trash'></i></button>
+            </td>
+        </tr>
+        <tr>
+
+            <%  _ ->  %>
+
+        <tr class="cart-item">
+            <td>
+                <a href="<%= item.url %>"><img src="<%= item.files |> hd() |> Map.get(:url) %>"></a>
+            </td>
+            <td>
+                <a href="<%= item.url %>"><%= item.title %><br><%= item.subtitle %></a>
+                <%= if item[:promocode_applied] do %>
+                    <div class="subitem">
+                        <%= item.promocode_applied %>:
+                        <%= trans(@lang, "reduced price:", "reduzierter preis:") %>
+
+                        <%= item.price_reduced |> format_price(2) %>
+
+                    </div>
+                <% else %>
+                    <%= if item.amount>1 do %>
+                    <div class="subitem">
+                        a <%= item.price |> format_price(2) %>
+                    </div>
+                    <% end %>
+                <% end %>
+
+
+            </td>
+            <td class="amount">
+                <button class="btn btn-link btn-sm" phx-click="change_quantity" phx-value-mode="dec"
+                    phx-value-sku="<%= item.sku %>"><i class='fal fa-minus'></i></button>
+                <span class="value"><%= item.amount %></span>
+                <button class="btn btn-link btn-sm" phx-click="change_quantity" phx-value-mode="inc"
+                    phx-value-sku="<%= item.sku %>"><i class='fal fa-plus'></i></button>
+            </td>
+            <td class="price">
+                <%= item.total_price |> format_price(2) %>
+            </td>
+            <td>
+                <button class="btn btn-link" phx-click="remove_item" phx-value-sku="<%= item.sku %>"><i
+                        class='fal fa-trash'></i></button>
+            </td>
+        </tr>
+        <tr>
+            <% end %>
+
+        </tr>
+        <% end %>
+        <tr class="cart-item total-line">
+            <td><%= trans(@lang, "TOTAL","GESAMT") %></td>
+            <td></td>
+            <td class="amount">
+            </td>
+            <td class="price"><%= @cart.total_price  |> format_price(2) %></td>
+            <td></td>
+        </tr>
+    </table>
+
+    <div class="cart-bottom-buttons">
+
+        <a href="<%=  trans(@lang, "/shop","/de/shop") %>" class="btn  btn-outline-primary">
+            <%= trans(@lang, "continue shopping","weiter shoppen") %>
+        </a>
+
+        &nbsp;
+
+        <a href="<%= Routes.checkout_path(@socket,:index,@lang) %>" class="btn btn-primary">
+            <%= trans(@lang, "proceed to checkout","zur Kassa") %>
+        </a>
+    </div>
+
+
+    <div class="promocode-form">
+        <%= _f = form_for :form_data, "#", [ phx_submit: :save_promocode] %>
+
+
+        <label for="promocode"><%= trans(@lang,"do you have a promo-code?") %></label>
+
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" name="promocode" placeholder="promo-code" aria-label="do you have a promo-code?">
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="submit">OK</button>
+            </div>
+        </div>
+
+
+        </form>
+    </div>
+        <%= if assigns[:promo_msg] do %>
+        <div class="promo-msg alert alert-info">
+            <%= @promo_msg %>
+        </div>
+        <% end %>
+
+    <% end %>
+</div>

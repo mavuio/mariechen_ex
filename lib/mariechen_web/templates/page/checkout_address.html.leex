@@ -1,0 +1,79 @@
+<div class="checkout-wrap">
+
+  <h2>
+    <%= trans(@lang,"Billing-Address","Rechnungs-Adresse") %>
+  </h2>
+
+  <%= f = form_for @changeset, "#", [as: :step_data, phx_change: :validate, phx_submit: :save] %>
+
+
+
+<!-- Required styles for MDC Web -->
+
+<!-- Render textfield component -->
+
+  <div class="row">
+  	<%= input f, :first_name, label: t(@lang, "fields.first_name"), class: "col-sm" %>
+  	<%= input f, :last_name , label: t(@lang, "fields.last_name"), class: "col-sm" %>
+  </div>
+
+  <%= input f, :company , label: t(@lang, "fields.company") %>
+  <%= input f, :email , label: t(@lang, "fields.email") %>
+  <%= input f, :phone , label: t(@lang, "fields.phone") %>
+  
+  <%= input f, :street , label: t(@lang, "fields.street") %>
+  <div class="row">
+    <%= input f, :zip , label: t(@lang, "fields.zip"), class: "col-sm-4"  %>
+    <%= input f, :city , label: t(@lang, "fields.city"), class: "col-sm"  %>
+  </div>
+  <%= input f, :country , label: t(@lang, "fields.country") , type: "select" , items: MariechenWeb.Shop.LocalCheckout.get_countries_for_dropdown(@lang), prompt: "please select:" %>
+
+
+<%= if @checkout_record[:pickup]=="no" do %>
+  
+  <% 
+  icon_checkbox = fn val -> %>
+
+  <div class="iconbox">
+    <%= radio_button f, :has_shipping_address, val, class: "d-none" %>
+
+    <%= if f.params["has_shipping_address"]==val do %>
+    <i class='fal fa-check-circle fa-2x'></i>
+    <% else %>
+    <i class='fal fa-circle fa-2x'></i>
+    <% end %>
+  </div>
+
+  <% end %>
+
+
+  <div class="radio-choice">
+    <div>
+      <label>
+        <%= icon_checkbox.("no") %>
+        <div class="text">
+          <%= trans(@lang, "ship to this address","an diese Adresse zustellen") %>
+        </div>
+      </label>
+    </div>
+  </div>
+
+  <div class="radio-choice">
+    <div>
+      <label>
+        <%= icon_checkbox.("yes") %>
+        <div class="text">
+          <%= trans(@lang, "use different shipping address","abweichende Zustell-Adresse verwenden") %>
+        </div>
+      </label>
+    </div>
+  </div>
+<% end %>
+
+
+  <div class="step-nav">
+      <a class="btn btn-outline-primary" href="<%=   Kandis.Checkout.get_prev_step_link(assigns, "address") %>" ><i class='fal fa-chevron-left'></i>&nbsp;<%= trans(@lang, "back","zurück") %></a>
+      <button class="btn btn-primary" type="submit"><i class='fal fa-chevron-right'></i>&nbsp;<%=   trans(f.params, "next","weiter")  %></button>  </div>
+  </form>
+
+</div>

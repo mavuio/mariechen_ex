@@ -1,0 +1,57 @@
+hello: Hello World
+hello2: Hello second World
+
+fields:
+  first_name:  first name
+  last_name:  last name
+  company: company
+  email:  email
+  phone: phone
+  street:  street
+  city:  city
+  zip:  zip
+  country:  country
+
+payment_types:
+  creditcard: credit card
+  sofort: Sofort-Überweisung
+  paypal: PayPal
+
+order:
+  subtotal: Subtotal
+  total: TOTAL
+  incl_tax: "incl. %{taxrate}% VAT"
+
+delivery_types:
+  pickup: 
+    name: pickup in Vienna
+    duration:
+    price: 0
+  at_post: 
+    name: Austrian Post
+    duration: 2 days
+    price: 7
+  eu_gls: 
+    name: GLS Europe
+    duration: 2-4 days
+    price: 15
+  us_fedex_economy: 
+    name: FedEx Economy US/Canada
+    duration: 4 days
+    price: 30
+  us_fedex_priority: 
+    name: FedEx Priority US/Canada
+    duration: 2 days
+    price: 45
+  asia_post: 
+    name: Post - Asia 
+    duration: 2 weeks
+    price: 30
+  asia_fedex_priority: 
+    name: FedEx Priority - Asia
+    duration: 1-4 days
+    price: 70
+  
+
+msg:
+  field_is_required: ↑ please fill in 

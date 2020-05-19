@@ -1,0 +1,61 @@
+<div class="checkout-wrap">
+
+  <h2>
+    <%= trans(@lang,"Shipping","Zustellung") %>
+  </h2>
+
+  <%= f = form_for @changeset, "#", [as: :step_data, phx_change: :validate, phx_submit: :save] %>
+
+
+
+    <%= standalone_error_tag(f, :delivery_type) %>
+
+  <% 
+  icon_checkbox = fn name -> %>
+
+  <div class="iconbox">
+    <%= radio_button f, :delivery_type, name, class: "d-none" %>
+
+    <%= if f.params["delivery_type"]==name do %>
+    <i class='fal fa-check-circle fa-2x'></i>
+    <% else %>
+    <i class='fal fa-circle fa-2x'></i>
+    <% end %>
+  </div>
+
+  <% end %>
+
+
+
+  <%= if @checkout_record.pickup=="no" do %>
+  <div class="radio-choice">
+
+<%= for dt <- @delivery_types do %>
+
+
+   <div>
+      <label>
+        <%= icon_checkbox.(dt.key) %>
+        <div class="text">
+          <%= dt.name %> 
+          <small><%= dt.duration %> 
+           - 
+          <%= dt.price  |> format_price() %> </small>
+        </div>
+      </label>
+    </div>
+    
+
+<% end %>
+  </div>
+   
+  <% end %>
+
+
+
+  <div class="step-nav">
+      <a class="btn btn-outline-primary" href="<%=   Kandis.Checkout.get_prev_step_link(assigns , "deliverytype") %>" ><i class='fal fa-chevron-left'></i>&nbsp;<%= trans(@lang, "back","zurück") %></a>
+      <button class="btn btn-primary" type="submit"><i class='fal fa-chevron-right'></i>&nbsp;<%=   trans(f.params, "next","weiter")  %></button>  </div>
+  </form>
+
+</div>

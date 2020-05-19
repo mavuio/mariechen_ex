@@ -1,0 +1,141 @@
+<% require Kandis.KdHelpers %>
+<div class="orderhtml">
+    <div class="notfooter">
+    <%= if @invoicemode do %>
+    <div class="logo">
+        <img src="/mysite/images/eva_blut_on_light.svg">
+    </div>
+
+
+    <div class="addressline">
+        EVA BLUT · Eva Buchleitner · Kühfußgasse 2 · 1010 · Wien
+    </div>
+
+    <div class="billing-address-head">
+
+        <div>
+            <%= @orderinfo[:first_name] %> <%= @orderinfo[:last_name] %>
+        </div>
+        <%= if assigns[:company] do %>
+        <div>
+            <%= @orderinfo.company %>
+        </div>
+        <% end %>
+
+
+        <div>
+            <%= @orderinfo.street %>
+        </div>
+        <div>
+            <%= @orderinfo.zip %> <%= @orderinfo.city %>
+        </div>
+        <%= @orderinfo.country  |> MariechenWeb.Shop.Countries.get_country_name() %>
+
+    </div>
+    <% end %>
+
+    <%= if assigns[:order] do %>
+    <div class="order-title order-only">
+        <strong><%= trans(@lang,"Order","Bestellung") %> <%= @order.order_nr %></strong>
+    </div>
+    <%= if @invoicemode do %>
+    <div class="invoice-only">
+        <strong><%= trans(@lang,"Invoice","Rechnung") %> <%= @order.invoice_nr %></strong>
+    </div>
+    <% end %>
+
+    <div>&nbsp;</div>
+    <%= trans(@lang,"Order date","Bestelldatum:") %>: <%= @order.inserted_at  |> format_day() %>
+    <% end %>
+
+
+    <table class="lineitems">
+
+        <%= for i <- @orderdata.lineitems do %>
+        <tr class="lineitem-<%= i.type %>">
+            <td class="amount">
+                <%= i[:amount] %>
+            </td>
+            <td class="text">
+                <%= i[:title] %>
+                <%= if i[:subtitle] do %>
+                <div class="subtitle">
+                    <%= i[:subtitle] %>
+                    <%= if not is_nil(i[:single_price])  and i[:amount]>1 do %>
+                    <span class="single_price">
+                        - à <%= i[:single_price]  |> format_price() %>
+                    </span>
+                    <% end %>
+                </div>
+                <% end %>
+
+            </td>
+            <td class="curr">
+                <%= i[:total_price]  |> format_price() %>
+            </td>
+        </tr>
+        <% end %>
+    </table>
+
+
+    <div>&nbsp;</div>
+    <div class="fact">
+        E-Mail: <strong><%= @orderinfo[:email] %></strong>
+    </div>
+
+    <%= if @orderinfo[:payment_type] do %>
+    <div class="fact">
+        <%= trans(@lang,"pay by:","Zahlungsart:") %>&nbsp;
+        <%= t(@lang,"payment_types."<>@orderinfo.payment_type) %>
+    </div>
+    <% end %>
+
+
+    <%= if @invoicemode and @orderinfo.delivery_type != "pickup" do %>
+        <div>&nbsp;</div>
+        <%= trans(@lang,"ship to:","Zustell-Adresse:") %>
+        <div class="invoice-delivery-addressinfo">
+                <%= Phoenix.View.render(MariechenWeb.ServerView,
+                    "addressinfo.html",
+                    @orderinfo
+                    |> Kandis.KdHelpers.pipe_when(@orderinfo.has_shipping_address=="yes",Kandis.Order.extract_shipping_address_fields())
+                    ) %>
+        </div>
+
+
+
+    <% else %>
+        <div class="addresses">
+            <%= Phoenix.View.render(MariechenWeb.ServerView,
+                    "addressinfo.html",
+                    @orderinfo
+                    |> Map.merge(%{title: trans(@lang,"Billing-Address","Rechnungs-Adresse")<>":"})
+                    ) %>
+            <%= if @orderinfo[:delivery_type] !="pickup" and @orderinfo[:has_shipping_address]=="yes" do %>
+
+            <%= Phoenix.View.render(MariechenWeb.ServerView,
+                "addressinfo.html",
+                @orderinfo
+                |> Kandis.Order.extract_shipping_address_fields()
+                |> Map.merge(%{title: trans(@lang,"Shipping-Address","Zustell-Adresse")<>":"})
+                ) %>
+
+            <% end %>
+        </div>
+        <div>&nbsp;</div>
+    <% end %>
+
+</div>
+    <%= if @invoicemode do %>
+    <div class="footer-address">
+    VAT NO. ATU 45960107, FNR 1234567, HANDELSGERICHT WIEN
+
+    <strong>EVA BLUT STORE</strong>
+    Kühfußgasse 2
+    1010 Vienna, Austria
+    T +43 1 8906560-15 F+43 1 5240595 wien@mariechen.com
+    WWW.EVABLUT.COM
+      </div>
+    <% end %>
+
+</div>

@@ -1,0 +1,47 @@
+<h1 class="title">
+    Orders
+</h1>
+
+
+<!-- <%= @orders |> Enum.count() %> -->
+<table class="table">
+    <thead>
+        <tr>
+            <td>ID</td>
+            <td>Order-Nr</td>
+            <td>state</td>
+            <td>created</td>
+            <td>email</td>
+            <td>country</td>
+            <td>total</td>
+            <td>payment_type</td>
+            <td>delivery_type</td>
+            <td>invoice-nr</td>
+            <td>cart_id</td>
+            <td>vid</td>
+        </tr>
+    </thead>
+    <%= for o <- @orders do %>
+    <tr>
+        <td><%= o.id %></td>
+        <td><%= o.state %></td>
+        <td><a href="<%= Routes.backend_path(@conn,:show_order, o.order_nr) %>"><%= o.order_nr %></a></td>
+        <td><%= o.inserted_at  |> local_date() %></td>
+        <td><%= o.email %></td>
+        <td><%= o.shipping_country %></td>
+        <td><%= o.total_price %></td>
+        <td><%= o.payment_type %></td>
+        <td><%= o.delivery_type %></td>
+        <td><a href="<%= Routes.backend_path(@conn,:show_invoice, o.order_nr) %>"><%= o[:invoice_nr]  %></a>
+
+        </td>
+        <td>
+            <%= o.cart_id %>
+        </td>
+        <td>
+            <%= o.orderinfo["vid"] %>
+        </td>
+
+    </tr>
+    <% end %>
+</table>

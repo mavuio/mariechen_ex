@@ -1,0 +1,31 @@
+<%= MariechenWeb.Integration.layout_part(@lang,:top)  |> raw() %>
+    <title>Mariechen cart</title>
+    <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
+    <%= csrf_meta_tag() %>
+    <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
+    <link rel="stylesheet" href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css">
+
+    <!-- Required MDC Web JavaScript library -->
+    <%# <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script> %>
+    <!-- Instantiate single textfield component rendered in the document -->
+    <%= if assigns[:head_addons] do %>
+    <%= for addon <- @head_addons do %>
+      <%= raw(addon) %>
+    <% end %>
+    <% end %>
+
+  </head>
+<%= MariechenWeb.Integration.layout_part(@lang,:mid)  |> fix_language_link(@conn) |> raw() %>
+    <main role="main" class="container">
+      <%= if get_flash(@conn, :info) do %>
+        <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
+      <% end %>
+      <%= if get_flash(@conn, :warning) do %>
+        <p class="alert alert-warning" role="alert"><%= get_flash(@conn, :warning) %></p>
+      <% end %>
+      <%= if get_flash(@conn, :error) do %>
+        <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+      <% end %>
+      <%= render @view_module, @view_template, assigns %>
+    </main>
+<%= MariechenWeb.Integration.layout_part(@lang,:bottom) |> raw() %>

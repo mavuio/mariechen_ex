@@ -1,0 +1,27 @@
+<div class="checkout-wrap">
+
+  <h2>
+    <%= trans(@lang,"Order finished","Bestellung abgeschlossen") %>
+  </h2>
+
+
+  <div>&nbsp;</div>
+  <div>&nbsp;</div>
+  <%= if @lang=="en" do %>
+    checkout completed, you will get an email with an order-confirmation.
+    <% else %>
+    Bestellung abgeschlossen, Sie erhalten in  Kürze ein e-Mail mit einer Bestellungs-Bestätigung.
+  <% end %>
+  <div>&nbsp;</div>
+  <div>&nbsp;</div>
+    <%= raw(@orderhtml) %>
+<div>&nbsp;</div>
+<div>&nbsp;</div>
+
+
+
+  <div class="step-nav">
+      <a class="btn btn-primary" href="/"><i class='fal fa-chevron-right'></i>&nbsp;<%=   trans(@lang, "home")  %></a>  
+  </div>
+
+</div>

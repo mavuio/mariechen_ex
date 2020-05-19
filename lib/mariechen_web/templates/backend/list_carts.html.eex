@@ -1,0 +1,26 @@
+<h1 class="title">
+    Carts
+</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <td>ID</td>
+            <td>created</td>
+            <td>last modified</td>
+            <td>email</td>
+            <td>in stripe zur Zahlung angemeldet</td>
+
+        </tr>
+    </thead>
+    <%= for o <- @carts do %>
+    <tr>
+        <td><a href="<%= Routes.backend_path(@conn,:show_cart_data, o.sid) %>"><%= o.sid %></a></td>
+        <td><%= o.inserted_at  |> local_date() %></td>
+        <td><%= o.updated_at  |> local_date() %></td>
+        <td><%= o.checkout_data[:email] %></td>
+        <td><%= o.stripe_data[:amount] %></td>
+    </tr>
+    <% end %>
+</table>

@@ -1,0 +1,8 @@
+    sorry, but an ERROR occured:
+    <div>&nbsp;</div>
+<div class="alert alert-danger">
+<%=  @message %>
+</div>
+<div>&nbsp;</div>
+
+<small>debug-id: <%=  assigns[:visit_id] %> <%= DateTime.utc_now() %></small>

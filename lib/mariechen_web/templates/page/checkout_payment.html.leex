@@ -1,0 +1,32 @@
+<div class="checkout-wrap">
+
+  <h2>
+    <%= trans(@lang,"Payment","Zahlung") %>
+  </h2>
+
+<div>&nbsp;</div>
+
+
+
+➜ <%= trans(@lang, "please click the button to continue on 'sofortüberweisung'", "Bitte führen Sie den Bezahlvorgang auf sofort.com durch") %>: 
+<div>&nbsp;</div>
+
+
+
+
+<%= if @payment_attempt do %>
+  
+<center>
+  <a class="btn btn-primary" href="<%= @payment_attempt.payment_url %>"><i class="fa fa-chevron-right"></i>
+      <%= trans(@lang, "continue to payment", "Bezahlvorgang starten") %>
+  </a>
+</center>
+
+<% end %>
+
+
+  <div class="step-nav">
+      <a class="btn btn-outline-primary" href="<%=   Kandis.Checkout.get_prev_step_link(assigns, "payment") %>" ><i class='fal fa-chevron-left'></i>&nbsp;<%= trans(@lang, "back","zurück") %></a>
+  </div>
+
+</div>

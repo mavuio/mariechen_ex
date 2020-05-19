@@ -1,0 +1,93 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title></title>
+    <style type="text/css" media="screen">
+
+        body {
+            margin: 0;
+            margin: 0;
+            background-color: #eeeeee;
+            font-family: Helvetica,"arial",sans-serif;
+        }
+    
+        a {border:none;color:#222}
+        a img {border:none;color:#222}
+
+        .orderhtml .lineitems {
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+            width:500px;
+            min-width:500px;
+            }
+            .orderhtml .lineitems tr td {
+            padding: 0.8rem;
+            }
+            .orderhtml .lineitems tr td.curr {
+            text-align: right;
+            font-size: 0.8em;
+            }
+            .orderhtml .lineitems tr td .subtitle {
+            font-size: 0.8em;
+            }
+            .orderhtml .lineitems tr.lineitem-product td {
+            border-bottom: 1px solid #aaa;
+            }
+            .orderhtml .lineitems tr.lineitem-subtotal td,
+            .orderhtml .lineitems tr.lineitem-total td {
+            font-weight: bold;
+            }
+            .orderhtml .lineitems tr.lineitem-total_tax {
+            font-size: 0.8em;
+            }
+
+            .orderhtml .addresses {
+            margin-top: 3rem;
+            display: flex;
+            }
+            .orderhtml .addresses > div {
+            flex: 1 1 auto;
+            margin-right: 1em;
+            }
+
+            .orderhtml .adressinfo div {
+            margin-bottom: 0.3rem;
+            }
+
+            .orderhtml .adressinfo h4 {
+            margin-bottom: 1rem;
+            }
+
+
+    </style>
+</head>
+<body>
+
+    <div style="background-color:#eeeeee;padding:20px">
+
+        &nbsp;
+        
+        <table style="width:600px;margin:0px auto"><tr><td  style="width:600px;margin:0px auto;position:relative">
+           <table  width="100%" >
+               <tr><td style="background-color:#ffffff;min-height:200px;">
+                   <div style="padding:10px" align="right"><img src='https://www.mariechen.com/mysite/images/maillogo.png' alt="EVA BLUT"></div>
+                   
+                   <table>
+                       <tr><td style='padding:30px;font-family:Helvetica,arial,sans-serif;font-size:13px'>
+                              <%= render @view_module, @view_template, assigns %>
+
+                       </td></tr>
+                   </table>
+               </td></tr>
+           </table>
+            
+           
+
+        
+        </td></tr></table>
+
+        &nbsp;
+
+    </div>
+</body>
+</html>

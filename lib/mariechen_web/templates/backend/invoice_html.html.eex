@@ -1,0 +1,11 @@
+
+<style>
+  .section {
+      padding: 0 !important;
+  }
+</style>
+
+    <div class="is-invoice">
+        <%= @orderhtml  |> raw() %>
+    </div>
+

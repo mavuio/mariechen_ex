@@ -1,0 +1,10 @@
+
+
+in assets/node_modules/phoenix_live_view/assets/js/phoenix_live_view.js:
+
+    DOM.putPrivate(input, PHX_HAS_FOCUSED, true)
+    input.classList.add('has-focused'); //mwuits patched here 2020-03-18
+
+or in: assets/node_modules/phoenix_live_view/priv/static/phoenix_live_view.js
+
+G.isTextualInput(r)?(G.putPrivate(r,"phx-has-focused",!0),r.classList.add('has-focused')):e.setActiveElement(r)

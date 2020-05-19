@@ -1,0 +1,44 @@
+hello: Hallo Welt
+
+fields:
+  first_name: Vorname
+  last_name:  Nachname
+  company: Firma
+  email:  e-Mail
+  phone: Telefon
+  street:  Adresse
+  city:  Ort
+  zip:  PLZ
+  country:  Land
+
+order:
+  subtotal: Zwischensumme
+  total: TOTAL
+  incl_tax: "inkl. %{taxrate}% UST"
+
+
+payment_types:
+  creditcard: Kreditkarte
+  sofort: Sofort-Überweisung
+  paypal: PayPal
+
+delivery_types:
+  at_post: 
+    name: Österreichische Post
+    duration: 2 Tage
+  eu_gls: 
+    name: GLS Europe
+    duration: 2-4 Tage
+  us_fedex_economy: 
+    duration: 4 Werktage
+  us_fedex_priority: 
+    duration: 2 Werktage
+  asia_post: 
+    name: Post - Asia
+    duration: 2 Wochen
+  asia_fedex_priority: 
+    name: FedEx Priority - Asia 
+    duration: 1-4 Tage
+
+msg:
+  field_is_required: ↑ bitte ausfüllen 

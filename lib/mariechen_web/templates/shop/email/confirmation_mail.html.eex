@@ -1,0 +1,19 @@
+Dear customer,
+<div>&nbsp;</div>
+We have received your order. Thank You!<br>
+It will be processed within the next working day and handed out for shipping a.s.a.p.
+<div>&nbsp;</div>
+<div>&nbsp;</div>
+<%= raw(@orderhtml) %>
+<div>&nbsp;</div>
+<div>&nbsp;</div>
+Thanks for shopping with us and all the best,
+Andrea, Customer Care
+<div>&nbsp;</div>
+EVA BLUT Store<br>
+Kühfußgasse 2, 1010 Wien, Austria<br>
+T +43 1 8906560-15<br>
+shop@mariechen.com<br>
+<div>&nbsp;</div>
+
+

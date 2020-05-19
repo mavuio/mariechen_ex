@@ -1,0 +1,34 @@
+<div class="checkout-wrap">
+
+  <h2>
+    <%= trans(@lang,"Shipping-Address","Zustell-Adresse") %>
+  </h2>
+
+  <%= f = form_for @changeset, "#", [as: :step_data, phx_change: :validate, phx_submit: :save] %>
+
+
+
+  
+  <div class="row">
+  	<%= input f, :shipping_first_name, label: t(@lang, "fields.first_name"), class: "col-sm" %>
+  	<%= input f, :shipping_last_name , label: t(@lang, "fields.last_name"), class: "col-sm" %>
+  </div>
+
+  <%= input f, :shipping_company , label: t(@lang, "fields.company") %>
+  <%= input f, :shipping_phone , label: t(@lang, "fields.phone") %>
+  
+  <%= input f, :shipping_street , label: t(@lang, "fields.street") %>
+  <div class="row">
+    <%= input f, :shipping_zip , label: t(@lang, "fields.zip"), class: "col-sm-4"  %>
+    <%= input f, :shipping_city , label: t(@lang, "fields.city"), class: "col-sm"  %>
+  </div>
+  <%= input f, :shipping_country , label: t(@lang, "fields.country") , type: "select" , items: MariechenWeb.Shop.LocalCheckout.get_countries_for_dropdown(@lang) %>
+
+
+
+  <div class="step-nav">
+      <a class="btn btn-outline-primary" href="<%=   Kandis.Checkout.get_prev_step_link(assigns, "shipping_address") %>" ><i class='fal fa-chevron-left'></i>&nbsp;<%= trans(assigns, "back","zurück") %></a>
+      <button class="btn btn-primary" type="submit"><i class='fal fa-chevron-right'></i>&nbsp;<%=   trans(assigns, "next","weiter")  %></button>  </div>
+  </form>
+
+</div>

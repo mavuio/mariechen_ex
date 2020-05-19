@@ -1,0 +1,5 @@
+Session:
+
+<%= inspect @sid %>
+<div>&nbsp;</div>
+<%= @orderhtml  |> raw() %>
