@@ -3,6 +3,7 @@ defmodule MariechenWeb.Shop.Checkout.Steps.CheckoutPickup do
   @step "pickup"
   @pageview MariechenWeb.PageView
   use Kandis.Checkout.LiveViewStep
+  use Phoenix.LiveView
 
   @impl true
   def mount(_params, session, socket) do

@@ -64,7 +64,22 @@ defmodule MariechenWeb.MyHelpers do
 
   def get_invoice_template_url(order_nr) when is_binary(order_nr) do
     Elixir.Application.get_env(:kandis, :local_url) <>
-      MariechenWeb.Router.Helpers.backend_path(MariechenWeb.Endpoint, :show_invoice_html, order_nr) <>
+      MariechenWeb.Router.Helpers.backend_path(
+        MariechenWeb.Endpoint,
+        :show_invoice_html,
+        order_nr
+      ) <>
+      "?token=" <>
+      MariechenWeb.BackendController.generate_beuser_token()
+  end
+
+  def get_pdf_template_url(order_nr, mode) when is_binary(order_nr) and is_binary(mode) do
+    Elixir.Application.get_env(:kandis, :local_url) <>
+      MariechenWeb.Router.Helpers.backend_path(
+        MariechenWeb.Endpoint,
+        :show_invoice_html,
+        order_nr
+      ) <>
       "?token=" <>
       MariechenWeb.BackendController.generate_beuser_token()
   end

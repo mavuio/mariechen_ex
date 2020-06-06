@@ -4,6 +4,8 @@ defmodule MariechenWeb.Shop.Checkout.Steps.CheckoutDeliverytype do
   @pageview MariechenWeb.PageView
 
   use Kandis.Checkout.LiveViewStep
+  use Phoenix.LiveView
+
   alias MariechenWeb.Shop.LocalCheckout
 
   use MariechenWeb.Live.AuthHelper

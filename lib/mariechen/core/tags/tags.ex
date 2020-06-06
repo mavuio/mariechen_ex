@@ -8,7 +8,7 @@ defmodule Mariechen.Core.Tags do
 
   import Ecto.Query, warn: false
 
-  @tag_root_folder_id 3
+  @tag_root_folder_id 6
 
   def get_type(type) do
     get_tag_query()

@@ -5,6 +5,7 @@ defmodule MariechenWeb.Shop.Checkout.Steps.CheckoutAddress do
   @pageview MariechenWeb.PageView
 
   use Kandis.Checkout.LiveViewStep
+  use Phoenix.LiveView
 
   import MariechenWeb.MyHelpers
 

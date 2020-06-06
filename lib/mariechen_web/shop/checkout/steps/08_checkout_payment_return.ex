@@ -5,6 +5,7 @@ defmodule MariechenWeb.Shop.Checkout.Steps.CheckoutPaymentReturn do
   @pageview MariechenWeb.PageView
 
   use Kandis.Checkout.LiveViewStep
+  use Phoenix.LiveView
 
   @recheck_timeout 20_000
 

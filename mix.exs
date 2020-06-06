@@ -47,7 +47,6 @@ defmodule Mariechen.MixProject do
       {:myxql, "~> 0.3.0"},
       {:blankable, "~> 1.0"},
       {:memoize, "~> 1.2"},
-      {:phoenix_live_view, "~> 0.9.0"},
       {:floki, ">= 0.0.0", only: :test},
       {:accessible, "~> 0.2.1"},
       {:pow, "~> 1.0.18"},

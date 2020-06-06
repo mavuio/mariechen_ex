@@ -4,6 +4,7 @@ defmodule MariechenWeb.Shop.Checkout.Steps.CheckoutReview do
   @pageview MariechenWeb.PageView
 
   use Kandis.Checkout.LiveViewStep
+  use Phoenix.LiveView
 
   use MariechenWeb.Live.AuthHelper
   import Kandis.KdHelpers, warn: false
