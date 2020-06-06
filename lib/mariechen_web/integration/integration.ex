@@ -9,7 +9,7 @@ defmodule MariechenWeb.Integration do
         a -> "/" <> a
       end
 
-    fetch_url(lang_prefix <> "/shop/ss20/ex_template?no_cache=1")
+    fetch_url(lang_prefix <> Application.get_env(:mariechen, :config)[:integration_tpl_url])
   end
 
   def fetch_url(url) do

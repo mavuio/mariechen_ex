@@ -10,7 +10,7 @@ use Mix.Config
 # which you should run after static files are built and
 # before starting your production server.
 config :mariechen, MariechenWeb.Endpoint,
-  http: [:inet6, port: System.get_env("PORT") || 4000],
+  http: [:inet6, port: System.get_env("PORT") || 4006],
   url: [host: "www.mariechen.com", path: "/ex"],
   cache_static_manifest: "priv/static/cache_manifest.json",
   check_origin: ["https://shop.mariechen.com", "https://www.mariechen.com"]
@@ -71,16 +71,17 @@ config :logger, level: :info
 # separately.
 
 config :mariechen, :config,
-  local_url: "https://www.mariechen.com",
+  local_url: "https://mariechen.werkzeugh.at",
   invoice_url: "/ex/pdfs",
-  shop_bcc_recipients: ["werkzeugh@gmail.com", "shop@mariechen.com"]
+  shop_bcc_recipients: ["werkzeugh@gmail.com"]
+  integration_tpl_url: "/products/limited-edition/ex_template?no_cache=1"
 
 config :kandis,
   invoice_dir: "/www/mariechen_ex/pdfs",
-  local_url: "https://www.mariechen.com"
+  local_url: "https://mariechen.werkzeugh.at"
 
 config :kandis, :sofort,
-  local_url: "https://www.mariechen.com",
+  local_url: "https://mariechen.werkzeugh.at",
   client_nr: "124988",
   project_id: "590216",
   base_url: "https://api.sofort.com/api/xml"

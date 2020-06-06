@@ -69,7 +69,7 @@ defmodule Mariechen.MixProject do
   end
 
   defp deps(:prod) do
-    deps() ++ [{:kandis, github: "werkzeugh/kandis", tag: "0.3.4", only: [:prod]}]
+    deps() ++ [{:kandis, github: "werkzeugh/kandis", tag: "0.3.14", only: [:prod]}]
   end
 
   defp deps(_) do

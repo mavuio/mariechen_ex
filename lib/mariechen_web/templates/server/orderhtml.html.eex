@@ -8,8 +8,7 @@
 
 
     <div class="addressline">
-        EVA BLUT · Eva Buchleitner · Kühfußgasse 2 · 1010 · Wien
-    </div>
+MARIECHEN    </div>
 
     <div class="billing-address-head">
 
@@ -128,13 +127,8 @@
 </div>
     <%= if @invoicemode do %>
     <div class="footer-address">
-    VAT NO. ATU 45960107, FNR 1234567, HANDELSGERICHT WIEN
 
-    <strong>EVA BLUT STORE</strong>
-    Kühfußgasse 2
-    1010 Vienna, Austria
-    T +43 1 8906560-15 F+43 1 5240595 wien@mariechen.com
-    WWW.EVABLUT.COM
+    <strong>MARIECHEN</strong>
       </div>
     <% end %>
 
